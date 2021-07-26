@@ -3,6 +3,7 @@ package entities;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class PhongBan {
@@ -52,6 +53,16 @@ public class PhongBan {
 		return "PhongBan [idPhongBan=" + idPhongBan + ", tenPhongBan=" + tenPhongBan + ", ngayTao=" + ngayTao + "]";
 	}
 
+	public void printPhongBan(List<PhongBan> lisPhongBans) {
+		SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy");
+		System.out.printf("%-15s%-30s%-15s\n", "Mã phòng ban", "Tên phòng ban", "Ngày tạo");
+		for (PhongBan phongBan : lisPhongBans) {
+			System.out.printf("%-15d%-30s%-15s\n", phongBan.getIdPhongBan(), phongBan.getTenPhongBan(),
+					sf.format(phongBan.getNgayTao()));
+		}
+
+	}
+
 	public PhongBan nhapPhongBan() {
 		PhongBan phongBan = new PhongBan();
 		Scanner input = new Scanner(System.in);
@@ -68,7 +79,7 @@ public class PhongBan {
 		}
 		return phongBan;
 	}
-	
+
 	public void suaPhongBan() {
 		PhongBan phongBan = new PhongBan();
 		Scanner input = new Scanner(System.in);
@@ -84,5 +95,5 @@ public class PhongBan {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

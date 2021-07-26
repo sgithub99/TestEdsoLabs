@@ -1,12 +1,13 @@
 package entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class Ticket {
 
 	private int idTicket;
-	private PhongBan idPhongban;
-	private User idUser;
+	private int idPhongban;
 	private String sdtKhachHang;
 	private String yKienKhachHang;
 	private Date thoiGianTiepNhan;
@@ -19,12 +20,11 @@ public class Ticket {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ticket(int idTicket, PhongBan idPhongban, User idUser, String sdtKhachHang, String yKienKhachHang,
-			Date thoiGianTiepNhan, String ndXyLyTicket, boolean trangThaiXyLy, Date thoiGianXyLy) {
+	public Ticket(int idTicket, int idPhongban, String sdtKhachHang, String yKienKhachHang, Date thoiGianTiepNhan,
+			String ndXyLyTicket, boolean trangThaiXyLy, Date thoiGianXyLy) {
 		super();
 		this.idTicket = idTicket;
 		this.idPhongban = idPhongban;
-		this.idUser = idUser;
 		this.sdtKhachHang = sdtKhachHang;
 		this.yKienKhachHang = yKienKhachHang;
 		this.thoiGianTiepNhan = thoiGianTiepNhan;
@@ -41,20 +41,12 @@ public class Ticket {
 		this.idTicket = idTicket;
 	}
 
-	public PhongBan getIdPhongban() {
+	public int getIdPhongban() {
 		return idPhongban;
 	}
 
-	public void setIdPhongban(PhongBan idPhongban) {
+	public void setIdPhongban(int idPhongban) {
 		this.idPhongban = idPhongban;
-	}
-
-	public User getIdUser() {
-		return idUser;
-	}
-
-	public void setIdUser(User idUser) {
-		this.idUser = idUser;
 	}
 
 	public String getSdtKhachHang() {
@@ -107,11 +99,22 @@ public class Ticket {
 
 	@Override
 	public String toString() {
-		return "Ticket [idTicket=" + idTicket + ", idPhongban=" + idPhongban + ", idUser=" + idUser + ", sdtKhachHang="
-				+ sdtKhachHang + ", yKienKhachHang=" + yKienKhachHang + ", thoiGianTiepNhan=" + thoiGianTiepNhan
-				+ ", ndXyLyTicket=" + ndXyLyTicket + ", trangThaiXyLy=" + trangThaiXyLy + ", thoiGianXyLy="
-				+ thoiGianXyLy + "]";
+		return "Ticket [idTicket=" + idTicket + ", idPhongban=" + idPhongban + ", sdtKhachHang=" + sdtKhachHang
+				+ ", yKienKhachHang=" + yKienKhachHang + ", thoiGianTiepNhan=" + thoiGianTiepNhan + ", ndXyLyTicket="
+				+ ndXyLyTicket + ", trangThaiXyLy=" + trangThaiXyLy + ", thoiGianXyLy=" + thoiGianXyLy + "]";
 	}
 
-	
+	public void printTicket(List<Ticket> listTickets) {
+		SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy");
+		
+		System.out.printf("%-15s%-25s%-15s%-15s%-15s%-30s%-20s%-15s\n", "Ticket ID", "Phòng ban tiếp nhận", "SDT KH",
+				"Ý kiến KH", "TG tiếp nhận", "Nội dung xử lý", "Trạng thái xử lý", "TG xử lý");
+		for (Ticket ticket : listTickets) {
+			System.out.printf("%-15d%-25d%-15s%-15s%-15s%-30s%-20b%-15s\n", ticket.getIdTicket(),
+					ticket.getIdPhongban(), ticket.getSdtKhachHang(), ticket.getyKienKhachHang(),
+					sf.format(ticket.getThoiGianTiepNhan()), ticket.getNdXyLyTicket(), ticket.isTrangThaiXyLy(),
+					sf.format(ticket.getThoiGianXyLy()));
+		}
+	}
+
 }

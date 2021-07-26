@@ -30,7 +30,6 @@ public class PhongBanDAOImpl implements PhongBanDAO {
 				return true;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -52,7 +51,6 @@ public class PhongBanDAOImpl implements PhongBanDAO {
 				return true;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -65,16 +63,13 @@ public class PhongBanDAOImpl implements PhongBanDAO {
 
 		con = ConnectDB.openConnection();
 		try {
-			prst = con.prepareStatement(
-					"delete from PhongBan where IdPhongBan = ?");
+			prst = con.prepareStatement("delete from PhongBan where IdPhongBan = ?");
 			prst.setInt(1, phongBan.getIdPhongBan());
-			
 			int i = prst.executeUpdate();
 			if (i > 0) {
 				return true;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -131,14 +126,42 @@ public class PhongBanDAOImpl implements PhongBanDAO {
 	}
 
 	@Override
-	public PhongBan timKiemTheoTenPhongBan(String tenPhongBan) {
-		return null;
+	public List<PhongBan> timKiemTheoTenPhongBan(String tenPhongBan, List<PhongBan> listPhongBans) {
+		List<PhongBan> listPhongBan = new ArrayList<>();
+		for (PhongBan phongBan : listPhongBans) {
+			if (tenPhongBan.toLowerCase().equals(phongBan.getTenPhongBan().toLowerCase())) {
+				listPhongBan.add(phongBan);
+			}
+		}
+
+		return listPhongBan;
 	}
 
 	@Override
-	public boolean timKiemTheoIdPhongBan(int idPhongBan, List<PhongBan> listPhongBans) {
+	public List<PhongBan> timKiemTheoIdPhongBan(int idPhongBan, List<PhongBan> listPhongBans) {
+		List<PhongBan> listPhongBan = new ArrayList<>();
 		for (PhongBan phongBan : listPhongBans) {
-			if(phongBan.getIdPhongBan() == idPhongBan) {
+			if (phongBan.getIdPhongBan() == idPhongBan) {
+				listPhongBan.add(phongBan);
+			}
+		}
+		return listPhongBan;
+	}
+
+	@Override
+	public boolean checkTenPhongBan(String tenPhongBan, List<PhongBan> listPhongBan) {
+		for (PhongBan phongBan : listPhongBan) {
+			if (tenPhongBan.toLowerCase().equals(phongBan.getTenPhongBan().toLowerCase())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean checkIdPhongBan(int idPhongBan, List<PhongBan> listPhongBan) {
+		for (PhongBan phongBan : listPhongBan) {
+			if (phongBan.getIdPhongBan() == idPhongBan) {
 				return true;
 			}
 		}
