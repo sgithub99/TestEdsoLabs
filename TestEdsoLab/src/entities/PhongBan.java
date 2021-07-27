@@ -52,6 +52,7 @@ public class PhongBan {
 	public String toString() {
 		return "PhongBan [idPhongBan=" + idPhongBan + ", tenPhongBan=" + tenPhongBan + ", ngayTao=" + ngayTao + "]";
 	}
+	
 
 	public void printPhongBan(List<PhongBan> lisPhongBans) {
 		SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy");

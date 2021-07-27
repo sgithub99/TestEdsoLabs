@@ -52,13 +52,14 @@ public class TicketDAOImpl implements TicketDAO {
 
 	@Override
 	public List<Ticket> timKiemTheoTenPhongBan(String tenPhongBan, List<Ticket> lisTickets) {
-//		List<Ticket> listTicketByTenPhongBan = new ArrayList<>();
-//		for (Ticket ticket : lisTickets) {
-//			if (ticket.getIdPhongban() == idPhongBan) {
-//				listTicketByIdPhongBan.add(ticket);
-//			}
-//		}
-		return null;
+		List<Ticket> listTicketByTenPhongBan = new ArrayList<>();
+
+		for (Ticket ticket : lisTickets) {
+			if (new PhongBanDAOImpl().getPhongBanById(ticket.getIdPhongban()).getTenPhongBan().toLowerCase().equals(tenPhongBan.toLowerCase())) {
+				listTicketByTenPhongBan.add(ticket);
+			}
+		}
+		return listTicketByTenPhongBan;
 	}
 
 	@Override
@@ -125,9 +126,12 @@ public class TicketDAOImpl implements TicketDAO {
 
 	@Override
 	public boolean checkTenPhongBanInTicket(String tenPhongBan, List<Ticket> lisTickets) {
-//		for (Ticket ticket : lisTickets) {
-//			if(ticket.get)
-//		}
+		for (Ticket ticket : lisTickets) {
+			if (new PhongBanDAOImpl().getPhongBanById(ticket.getIdPhongban()).getTenPhongBan().toLowerCase()
+					.equals(tenPhongBan.toLowerCase())) {
+				return true;
+			}
+		}
 		return false;
 	}
 

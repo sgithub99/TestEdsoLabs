@@ -23,15 +23,17 @@ foreign key (IdPhongBan) references PhongBan(IdPhongban)
 
 create table Ticket(
 IdTicket int identity primary key,
-IdUser int,
 IdPhongBan int,
 SDT_KH varchar(20),
 YKienKhachHang text,
 ThoiGianTiepNhan datetime,
 NoiDungXuLyTicket nvarchar(200),
 TrangThaiXuLy bit,
-ThoiGianXyLy datetime
-foreign key (IdUser) references Userr(IdUser),
+ThoiGianXyLy datetime,
 foreign key (IdPhongBan) references PhongBan(IdPhongBan),
 )
+alter table Ticket
+add constraint fk_idPhongBan
+foreign key (IdPhongBan) references PhongBan(IdPhongBan)
+on delete cascade
 

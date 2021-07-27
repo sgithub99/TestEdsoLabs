@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import dao.impl.PhongBanDAOImpl;
+
 public class Ticket {
 
 	private int idTicket;
@@ -103,6 +105,7 @@ public class Ticket {
 				+ ", yKienKhachHang=" + yKienKhachHang + ", thoiGianTiepNhan=" + thoiGianTiepNhan + ", ndXyLyTicket="
 				+ ndXyLyTicket + ", trangThaiXyLy=" + trangThaiXyLy + ", thoiGianXyLy=" + thoiGianXyLy + "]";
 	}
+	
 
 	public void printTicket(List<Ticket> listTickets) {
 		SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy");
@@ -110,8 +113,8 @@ public class Ticket {
 		System.out.printf("%-15s%-25s%-15s%-15s%-15s%-30s%-20s%-15s\n", "Ticket ID", "Phòng ban tiếp nhận", "SDT KH",
 				"Ý kiến KH", "TG tiếp nhận", "Nội dung xử lý", "Trạng thái xử lý", "TG xử lý");
 		for (Ticket ticket : listTickets) {
-			System.out.printf("%-15d%-25d%-15s%-15s%-15s%-30s%-20b%-15s\n", ticket.getIdTicket(),
-					ticket.getIdPhongban(), ticket.getSdtKhachHang(), ticket.getyKienKhachHang(),
+			System.out.printf("%-15d%-25s%-15s%-15s%-15s%-30s%-20b%-15s\n", ticket.getIdTicket(),
+					new PhongBanDAOImpl().getPhongBanById(ticket.getIdPhongban()).getTenPhongBan(), ticket.getSdtKhachHang(), ticket.getyKienKhachHang(),
 					sf.format(ticket.getThoiGianTiepNhan()), ticket.getNdXyLyTicket(), ticket.isTrangThaiXyLy(),
 					sf.format(ticket.getThoiGianXyLy()));
 		}

@@ -103,6 +103,18 @@ public class Main {
 						}
 						break;
 					case 5:
+						System.out.println("Nhập tên phòng ban");
+						String tenPhongBan = input.nextLine();
+						boolean checkTenPhongBanInTicket = new TicketDAOImpl().checkTenPhongBanInTicket(tenPhongBan,
+								listTicket);
+						if (checkTenPhongBanInTicket) {
+							List<Ticket> timKiemTheoTenPhongBan = new TicketDAOImpl()
+									.timKiemTheoTenPhongBan(tenPhongBan, listTicket);
+							new Ticket().printTicket(timKiemTheoTenPhongBan);
+
+						} else {
+							System.out.println("Không tồn tại mã phòng ban trong ticket");
+						}
 						break;
 					default:
 						System.out.println("Vui lòng nhập từ 1-4");
@@ -186,14 +198,14 @@ public class Main {
 						}
 						break;
 					case 5:
-						
+
 						List<PhongBan> listPhongBan3 = new PhongBanDAOImpl().getListPhongBan();
 						System.out.println("Nhập tên phòng ban cần tìm kiếm");
 						String tenPhongBan = input.nextLine();
-						boolean checkTenPhongBan = new PhongBanDAOImpl().checkTenPhongBan(tenPhongBan,
-								listPhongBan3);
+						boolean checkTenPhongBan = new PhongBanDAOImpl().checkTenPhongBan(tenPhongBan, listPhongBan3);
 						if (checkTenPhongBan) {
-							List<PhongBan> timKiemTheoTenPhongBan = new PhongBanDAOImpl().timKiemTheoTenPhongBan(tenPhongBan, listPhongBan3);
+							List<PhongBan> timKiemTheoTenPhongBan = new PhongBanDAOImpl()
+									.timKiemTheoTenPhongBan(tenPhongBan, listPhongBan3);
 							new PhongBan().printPhongBan(timKiemTheoTenPhongBan);
 						} else {
 							System.out.println("Không tìm thấy phòng ban");
@@ -203,10 +215,10 @@ public class Main {
 						List<PhongBan> listPhongBan4 = new PhongBanDAOImpl().getListPhongBan();
 						System.out.println("Nhập mã phòng ban cần tìm kiếm");
 						int maPhongBan1 = Integer.parseInt(input.nextLine());
-						boolean kiemTheoIdPhongBan = new PhongBanDAOImpl().checkIdPhongBan(maPhongBan1,
-								listPhongBan4);
+						boolean kiemTheoIdPhongBan = new PhongBanDAOImpl().checkIdPhongBan(maPhongBan1, listPhongBan4);
 						if (kiemTheoIdPhongBan) {
-							List<PhongBan> timKiemTheoIdPhongBan3 = new PhongBanDAOImpl().timKiemTheoIdPhongBan(maPhongBan1, listPhongBan4);
+							List<PhongBan> timKiemTheoIdPhongBan3 = new PhongBanDAOImpl()
+									.timKiemTheoIdPhongBan(maPhongBan1, listPhongBan4);
 							new PhongBan().printPhongBan(timKiemTheoIdPhongBan3);
 						} else {
 							System.out.println("Không tìm thấy mã phòng ban");
